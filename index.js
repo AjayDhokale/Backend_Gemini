@@ -36,3 +36,4 @@ app.use('/api/v1/messages', messageRouter)
 
 // const port = process.env.PORT
 // app.listen(port, () => console.log(`Example app listening on port ${port}`))
+export default app;
