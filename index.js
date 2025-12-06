@@ -6,14 +6,25 @@ import verifyUser from './src/middlewares/userAuthMiddleware.js'
 import authRouter from './src/routes/authRotes.js'
 import chatRouter from './src/routes/chatRoutes.js'
 import messageRouter from './src/routes/messageRoutes.js'
-import cors from 'cors'
-dbConnect()                             // database connetivity
+import cors from "cors";
 
 const app = express()
+
+// Chagpt
+app.use(cors({
+    origin: "https://frontend-gemini.vercel.app",
+    credentials: true
+}));
+
+
+app.use(express.json());
 app.use(bodyParser.urlencoded())                // parse application/x-www-form-urlencoded
 app.use(bodyParser.json())
 
-app.use(cors())
+
+
+dbConnect()                             // database connetivity
+
 
 // parse application/json
 
@@ -23,5 +34,5 @@ app.use(verifyUser)
 app.use('/api/v1/chats', chatRouter)
 app.use('/api/v1/messages', messageRouter)
 
-const port = process.env.PORT
-app.listen(port, () => console.log(`Example app listening on port ${port}`))
+// const port = process.env.PORT
+// app.listen(port, () => console.log(`Example app listening on port ${port}`))
