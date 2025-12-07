@@ -48,7 +48,7 @@ export const createChats = async (req, res) => {
     } catch (error) {
         res.status(400).json({
             status: 'error',
-            message: err.message
+            message: error.message
         })
     }
 

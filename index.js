@@ -30,7 +30,7 @@ dbConnect()                             // database connetivity
 
 
 app.use('/api/v1/auth', authRouter)
-// app.use(verifyUser)
+app.use(verifyUser)
 app.use('/api/v1/chats', chatRouter)
 app.use('/api/v1/messages', messageRouter)
 
