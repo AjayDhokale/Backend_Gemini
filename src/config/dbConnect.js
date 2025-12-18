@@ -21,7 +21,7 @@ const dbConnect = async () => {
         process.exit(1)
     }
 
-    // console.log(uri);
+ 
 
 
 

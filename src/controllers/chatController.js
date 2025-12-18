@@ -54,10 +54,45 @@ export const createChats = async (req, res) => {
 
 }
 
+export const renameChat = async (req, res) => {
+
+    const { id, name } = req.body;  
+
+    if (!id || !name) {
+        return res.status(400).json({ status: 'error', message: 'id and name are required' });
+    }
+
+    try {
+        const updateChat = await ChatModel.findByIdAndUpdate(
+            id,
+            { name },
+            { new: true }
+        )
+
+        if (!updateChat) {
+            res.status(400).json({
+                status: 'error',
+                message: 'Chat cannot found '
+            })
+        }
+
+        res.status(200).json({
+            data: updateChat,
+            message: 'Chat Updated',
+            status: 'success'
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            status: 'error',
+            message: error.message
+        })
+    }
+
+}
 
 
 export const deleteChats = async (req, res) => {
-
 
     const { chatId } = req.params
 
@@ -82,8 +117,9 @@ export const deleteChats = async (req, res) => {
         }
 
         res.status(200).json({
-            status: 'Success',
-            message: 'Chat deleted Succesfully '
+            status: 'success',
+            message: 'Chat deleted Succesfully ',
+            data: {chatId}
         })
 
     } catch (err) {
