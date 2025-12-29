@@ -10,21 +10,22 @@ import cors from "cors";
 
 const app = express()
 
-// Chagpt
-app.use(cors({
-    origin: "https://frontend-gemini.vercel.app",
-    // origin: "http://localhost:5173",
-    credentials: true
-}));
+app.use(cors())
+
+// app.use(cors({
+//     origin: "https://frontend-gemini.vercel.app",
+//     // origin: "http://localhost:5173",
+//     credentials: true
+// }));
 
 
 app.use(express.json());
-app.use(bodyParser.urlencoded())                // parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded())                
 app.use(bodyParser.json())
 
 
 
-dbConnect()                             // database connetivity
+dbConnect()                             
 
 
 // parse application/json
